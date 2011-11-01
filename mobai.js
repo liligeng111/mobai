@@ -23,66 +23,6 @@
 //})();
 
 
-
-$(document).ready(function()
-{	
-	var $ = jQuery;
-	var feeds = $('.feed-content');
-	var debug = true;
-	feeds.each(function(i, item)
-	{
-		var replyer = $(this).find('h4').children().eq(0).attr('href');  //id of replyer
-		replyer = replyer.slice(replyer.search('id=') + 3, replyer.search('id=') + 12);
-		var url = $(this).find('h4').children().eq(1).attr('href');
-		
-		if (url.search('doingId') == -1) return; //not reply
-		var obj_map = {}; 
-		String(url).split('?')[1].split('&').map(function(a) { var ary = a.split('=');  obj_map[ary[0]] = ary[1]; });
-		
-		$.get(url, function(data)  // the page when you click the link
-		{
-			if (debug) console.log('function');
-			var token = data.slice(data.search('get_check:') + 9, data.search('get_check:') + 20);
-			var rtk = data.slice(data.search('get_check_x:') + 13, data.search('get_check_x:') + 21);
-			$.post("http://www.renren.com/feedcommentretrieve.do",  // the actual comments
-				{
-				doingId:obj_map.doingId,
-				source:obj_map.doingId,
-				owner:obj_map.id,
-				t:3,
-				requestToken:token,
-				_rtk:rtk
-				}, function(data)
-					{
-						var obj = JSON.parse(data); 
-						if (debug) console.log('search from ' + obj.replyList.length + ' elements:');
-						if (debug) console.log(obj);
-						for (var j = obj.replyList.length - 1; j > -1; j--)
-						{
-							console.log('compare ' + obj.replyList[j].ubid + ' with ' + replyer);
-							if(obj.replyList[j].ubid == replyer)
-							{
-								if (obj.replyList[j].src_content.search('(mb)') == -1 && obj.replyList[j].src_content.search('膜拜') == -1 && obj.replyList[j].src_content.search('mobai') == -1 && obj.replyList[j].src_content.search('mo bai') == -1)
-								{
-									if (debug) console.log('no (mb) found');
-									return;
-								}
-								
-								if (debug) console.log('bingo');
-								if (debug) console.log($(item).find('h4'));
-								var children = $(item).find('h4').children();
-								$('<h4><a target="_blank" href="' + children.eq(0).attr('href') + '">' + children.eq(0).text() + '</a> 在状态 <a target="_blank" source="' + obj_map.doingId + '" href="' + children.eq(1).attr('href') +'">' + children.eq(1).text() + '</a>中膜拜了你</h4>').replaceAll($(item).find('h4'));
-								//children.each(function(i, citem){if (debug) console.log(citem);$(item).find('h4').append(citem);});
-								return;
-							}
-						}
-					}
-			);
-		});
-	});
-});
-
-
 (function()
 {
 	var $ = jQuery;
