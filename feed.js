@@ -50,7 +50,12 @@ function check_mobai_in_feed()
 								if (debug) console.log('bingo');
 								if (debug) console.log($(item).find('h4'));
 								var children = $(item).find('h4').children();
-								$('<h4><a target="_blank" href="' + children.eq(0).attr('href') + '">' + children.eq(0).text() + '</a> 在状态 <a target="_blank" source="' + obj_map.doingId + '" href="' + children.eq(1).attr('href') +'">' + children.eq(1).text() + '</a>中膜拜了你</h4>').replaceAll($(item).find('h4'));
+								$(item).find('h4').fadeOut('slow', function() {
+								var new_h4 = $('<h4><a target="_blank" href="' + children.eq(0).attr('href') + '">' + children.eq(0).text() + '</a> 在状态 <a target="_blank" source="' + obj_map.doingId + '" href="' + children.eq(1).attr('href') +'">' + children.eq(1).text() + '</a>中膜拜了你</h4>');
+								new_h4.replaceAll($(item).find('h4'));
+								new_h4.fadeOut(0);
+								new_h4.fadeIn('slow');
+								});
 								return;
 							}
 						}
@@ -86,4 +91,4 @@ function check_feed_is_ready()
 	check_mobai_in_feed();
 }
 
-window.setTimeout(function() {check_feed_is_ready();}, 150);  
+window.setTimeout(function() {check_feed_is_ready();}, 150);

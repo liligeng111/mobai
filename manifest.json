@@ -5,5 +5,5 @@
   "permissions": ["tabs","http://*.renren.com/*"],
   "content_scripts": [
 		{ "js": ["jquery-1.6.4.js","mobai.js"], "matches": ["http://*.renren.com/*"]},
-		{ "js": ["jquery-1.6.4.js","feed.js"], "matches": ["http://*.renren.com/home*"]}]
+		{ "js": ["jquery-1.6.4.js","feed.js"], "matches": ["http://*.renren.com/home?*"]}]
 }
