@@ -63,8 +63,7 @@ function reply_mobai()
 	var block_user = $('.replybody');
 	block_user.each(function(i, item)
 	{
-		if ($(item).find('a').length != 2) return; // not a reply by others
-		if ($(item).find('a').eq(1).text() != '回复') return; // not a reply button
+		if ($(item).find('a').eq($(item).find('a').length - 1).text() != '回复') return; // not a reply button
 		var seperator = $('<span class="seperator"> | </span>');
 		var mobai_button = $('<a href="javascript:;">膜拜</a>');
 		if (check_reply_contain_mobai($(this).find('.replycontent')))
@@ -92,12 +91,12 @@ function reply_mobai()
 			$(this).parents().eq(5).find('textarea').val($(this).parents().eq(5).find('textarea').val() + mb_builder);
 			$(this).parents().eq(5).find('.input-button').trigger('click');
 		});
-		mobai_button.insertAfter($(this).find('a').eq(1));
-		seperator.insertAfter($(this).find('a').eq(1));
+		mobai_button.insertAfter($(this).find('a').eq($(item).find('a').length - 1));
+		seperator.insertAfter($(this).find('a').eq($(item).find('a').length - 2));
 		mobai_button.fadeOut(0);
-		mobai_button.fadeIn('slow');
+		mobai_button.fadeIn(50 * i + 250);
 		seperator.fadeOut(0);
-		seperator.fadeIn('slow');
+		seperator.fadeIn(50 * i + 250);
 	});
 	window.setTimeout(function() {reply_mobai();}, 1000);
 }
