@@ -1,4 +1,4 @@
-var debug = true; // debug mode
+var debug = false; // debug mode
 
 function check_mobai_in_feed()
 {	
@@ -61,7 +61,7 @@ function check_mobai_in_feed()
 						}
 					}
 			);
-		}).error(function() {console.log('error loadind feed ' + i)});
+		}).error(function() {console.log('error loadind feed ' + i);});
 		if (debug) console.log('end of feed ' + i);
 	});
 	if (debug) console.log('end of feed function');

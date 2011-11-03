@@ -1,28 +1,4 @@
-var src = document.createElement('script');
-document.getElementsByTagName('head')[0].appendChild(src);
-src.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js';
-//$.noConflict();
-//
-//
-//(function()
-//{
-//	var $ = jQuery;
-//	var block_user = $('.feed-block-user');
-//	var mb_builder = '(mb)(mb)(mb)(mb)(mb)';
-//	block_user.each(function(i, item)
-//	{
-//		var mobai_button = $('<li><a href="javascript:;">膜拜' + $(item).text().slice(2) +'</a></li>');
-//		mobai_button.click(function(e)
-//		{
-//			console.log($(this).parents().eq(5).prev().val(mb_builder), 'clicked');
-//			$(this).parents().eq(5).prev().find('textarea').val(mb_builder);
-//			$(this).parents().eq(5).prev().find('.input-button').trigger('click');
-//		});
-//	mobai_button.insertAfter($(this).parent());
-//	});
-//})();
-
-var debug = true;
+var debug = false;
 
 // moai function
 (function()
@@ -41,7 +17,7 @@ var debug = true;
 		{
 			if ($(item).text() == '转发')
 			{
-				var total = Math.floor(Math.random() * 11);
+				var total = Math.floor(Math.random() * 11 + 1);
 				mb_builder = '';
 				for (var i = 0; i < total; i++) mb_builder += '(mb)';
 			}
@@ -75,13 +51,13 @@ function reply_mobai()
 		{
 			if (!check_reply_contain_mobai($(item).find('.replycontent')))
 			{						
-				var total = Math.floor(Math.random() * 11);
+				var total = Math.floor(Math.random() * 11 + 1);
 				mb_builder = '';
 				for (var i = 0; i < total; i++) mb_builder += '(mb)';
 			}
 			else
 			{
-				var total = Math.floor(Math.random() * 11);
+				var total = Math.floor(Math.random() * 11 + 1);
 				mb_builder = '反膜拜';
 				for (var i = 0; i < total; i++) mb_builder += '!';
 			}

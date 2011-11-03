@@ -1,9 +1,9 @@
-{
+﻿{
   "name": "人人网膜拜器",
-  "version": "1.5",
+  "version": "1.5.2.4",
   "description": "在评论的右侧根据评论的内容添加 膜拜/反膜拜 按钮。当其他用户在您的状态中膜拜了您，主页上的提示将显示为“xxx在xx中膜拜了您”。 ",
-  "permissions": ["tabs","http://*.renren.com/*"],
+  "permissions": ["tabs","http://www.renren.com/*"],
   "content_scripts": [
-		{ "js": ["jquery-1.6.4.js","mobai.js"], "matches": ["http://*.renren.com/*"]},
-		{ "js": ["jquery-1.6.4.js","feed.js"], "matches": ["http://*.renren.com/home?*"]}]
+		{ "js": ["jquery-1.6.4.js","mobai.js"], "matches": ["http://www.renren.com/*"]},
+		{ "js": ["jquery-1.6.4.js","feed.js"], "matches": ["http://www.renren.com/home?*"]}]
 }
