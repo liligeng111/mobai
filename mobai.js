@@ -1,4 +1,4 @@
-var debug_mobai = true;
+var debug_mobai = false;
 var check_interval = 50;
 var queue_length = 0;
 var clicked_comment = "";  // store the comment clicked by user
@@ -142,10 +142,13 @@ function reply_mobai()
 	
 	queue_length = 0
 	if (check_interval < 1000) check_interval += 25;
-	if (debug_mobai) console.log('queue length: ' + queue_length);	
-	if (debug_mobai) console.log('clicked_comment: ' + clicked_comment);	
-	if (debug_mobai) console.log('rewrite: ' + rewrite);
-	if (debug_mobai) console.log('no change made, retry in ' + check_interval + 'ms');	
+	if (debug_mobai) 
+	{
+		console.log('queue length: ' + queue_length);	
+		console.log('clicked_comment: ' + clicked_comment);	
+		console.log('rewrite: ' + rewrite);
+		console.log('no change made, retry in ' + check_interval + 'ms');	
+	}
 	window.setTimeout(function() {reply_mobai();}, check_interval);
 }
 
