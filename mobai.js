@@ -119,15 +119,15 @@ function reply_mobai()
 			mobai_button.insertAfter($(this).find('a').eq($(item).find('a').length - 1));
 			seperator.insertAfter($(this).find('a').eq($(item).find('a').length - 2));
 		
-		$(this).parent().delay(200*queue_length).fadeIn(200);	
+		$(this).parent().delay(100*queue_length).fadeIn(150);	
 		queue_length ++;
 
 		found = true;
 		}
-		else if ($(item).parent().parent().attr('id') == clicked_comment)
+		else if ($(item).parents().find('[id=' + clicked_comment + ']').length != 0)
 		{
 			$(this).parent().fadeOut(0);	
-			$(this).parent().delay(200 * queue_length).fadeIn(200);	
+			$(this).parent().delay(100 * queue_length).fadeIn(150);	
 			queue_length ++;
 		}
 		//mobai_button.fadeOut(0);
@@ -138,7 +138,7 @@ function reply_mobai()
 
 	if (found = true)
 	{
-		if (clicked_comment != "") $('[id=' + clicked_comment + ']').next().delay(25 * queue_length).fadeIn(600);
+		if (clicked_comment != "") $('[id=' + clicked_comment + ']').next().delay(100 * queue_length).fadeIn(150);
 	 	clicked_comment = ""
 	};
 	
