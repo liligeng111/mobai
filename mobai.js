@@ -5,6 +5,8 @@ var clicked_comment = "";  // store the comment clicked by user
 var rewrite = 0;  // because sometimes the loading of a page can be very slow, once write, set it to 100, nothing new, deduct by 1;
 var num_comment = 0; //store the number of comments found
 
+
+
 rewrite_comment();
 // rewrite the show all reply button
 function rewrite_comment()
@@ -117,7 +119,7 @@ function reply_mobai()
 			mobai_button.insertAfter($(this).find('a').eq($(item).find('a').length - 1));
 			seperator.insertAfter($(this).find('a').eq($(item).find('a').length - 2));
 		
-		$(this).parent().delay(50*queue_length).fadeIn(600);	
+		$(this).parent().delay(200*queue_length).fadeIn(200);	
 		queue_length ++;
 
 		found = true;
@@ -125,7 +127,7 @@ function reply_mobai()
 		else if ($(item).parent().parent().attr('id') == clicked_comment)
 		{
 			$(this).parent().fadeOut(0);	
-			$(this).parent().delay(25 * queue_length).fadeIn(600);	
+			$(this).parent().delay(200 * queue_length).fadeIn(200);	
 			queue_length ++;
 		}
 		//mobai_button.fadeOut(0);
