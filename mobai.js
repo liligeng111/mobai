@@ -1,7 +1,7 @@
 var debug_mobai = false;
 var check_interval = 50;
-var queue_length = 0;
-var clicked_comment = "hahahahahaha";  // store the comment clicked by user
+//var queue_length = 0;
+//var clicked_comment = "hahahahahaha";  // store the comment clicked by user
 var rewrite = 0;  // because sometimes the loading of a page can be very slow, once write, set it to 100, nothing new, deduct by 1;
 var num_comment = 0; //store the number of comments found
 
@@ -121,10 +121,10 @@ function reply_mobai()
 		
 		//$(this).parent().delay(200*queue_length).fadeIn(200);	
 		mobai_button.fadeOut(0);
-		mobai_button.delay(150*queue_length).fadeIn(200);	
+		mobai_button.fadeIn(200);	
 		seperator.fadeOut(0);
-		seperator.delay(150*queue_length).fadeIn(200);
-		queue_length ++;
+		seperator.fadeIn(200);
+		//queue_length ++;
 
 		//found = true;
 		}
@@ -146,7 +146,7 @@ function reply_mobai()
 	// 	clicked_comment = "hahahahaha"
 	//};
 	
-	queue_length = 0
+	//queue_length = 0
 	if (check_interval < 1000) check_interval += 25;
 	if (debug_mobai) 
 	{
