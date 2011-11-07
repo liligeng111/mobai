@@ -121,9 +121,9 @@ function reply_mobai()
 		
 		//$(this).parent().delay(200*queue_length).fadeIn(200);	
 		mobai_button.fadeOut(0);
-		mobai_button.fadeIn(200 * queue_length);
+		mobai_button.delay(150*queue_length).fadeIn(200);	
 		seperator.fadeOut(0);
-		seperator.fadeIn(200 * queue_length);
+		seperator.delay(150*queue_length).fadeIn(200);
 		queue_length ++;
 
 		//found = true;
