@@ -1,7 +1,7 @@
 var debug_mobai = false;
 var check_interval = 50;
 var queue_length = 0;
-var clicked_comment = "";  // store the comment clicked by user
+var clicked_comment = "hahahahahaha";  // store the comment clicked by user
 var rewrite = 0;  // because sometimes the loading of a page can be very slow, once write, set it to 100, nothing new, deduct by 1;
 var num_comment = 0; //store the number of comments found
 
@@ -20,8 +20,8 @@ function rewrite_comment()
 		if (debug_mobai) console.log('item found:', item);
 		$(item).find('a').click(function(e)
 		{
-			clicked_comment = $(item).parent().attr("id");
-			$(item).parent().next().fadeOut(0);
+			//clicked_comment = $(item).parent().attr("id");
+			//$(item).parent().next().fadeOut(0);
 			check_interval = 0;
 		});
 	});
@@ -88,7 +88,7 @@ function reply_mobai()
 	{		
 		if ($(item).find('a').eq($(item).find('a').length - 1).text() == '回复') // a reply button
 		{
-			$(this).parent().fadeOut(0);	
+			//$(this).parent().fadeOut(0);	
 			var seperator = $('<span class="seperator"> | </span>');
 			var mobai_button = $('<a href="javascript:;">膜拜</a>');
 			if (check_reply_contain_mobai($(this).find('.replycontent')))
@@ -119,28 +119,32 @@ function reply_mobai()
 			mobai_button.insertAfter($(this).find('a').eq($(item).find('a').length - 1));
 			seperator.insertAfter($(this).find('a').eq($(item).find('a').length - 2));
 		
-		$(this).parent().delay(200*queue_length).fadeIn(200);	
+		//$(this).parent().delay(200*queue_length).fadeIn(200);	
+		mobai_button.fadeOut(0);
+		mobai_button.fadeIn(200 * queue_length);
+		seperator.fadeOut(0);
+		seperator.fadeIn(200 * queue_length);
 		queue_length ++;
 
-		found = true;
+		//found = true;
 		}
-		else if ($(item).parent().parent().attr('id') == clicked_comment)
-		{
-			$(this).parent().fadeOut(0);	
-			$(this).parent().delay(200 * queue_length).fadeIn(200);	
-			queue_length ++;
-		}
+		//else if ($(item).parents().find('[id=' + clicked_comment + ']').length != 0)
+		//{
+		//	$(this).parent().fadeOut(0);	
+		//	$(this).parent().delay(200 * queue_length).fadeIn(200);	
+		//	queue_length ++;
+		//}
 		//mobai_button.fadeOut(0);
 		//mobai_button.fadeIn(600);
 		//seperator.fadeOut(0);
 		//seperator.fadeIn(600);		
 	});
 
-	if (found = true)
-	{
-		if (clicked_comment != "") $('[id=' + clicked_comment + ']').next().delay(25 * queue_length).fadeIn(600);
-	 	clicked_comment = ""
-	};
+	//if (found = true)
+	//{
+	//	if (clicked_comment != "") $('[id=' + clicked_comment + ']').next().delay(200 * queue_length).fadeIn(200);
+	// 	clicked_comment = "hahahahaha"
+	//};
 	
 	queue_length = 0
 	if (check_interval < 1000) check_interval += 25;
