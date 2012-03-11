@@ -41,26 +41,24 @@ function rewrite_comment()
 $(document).ready(function() {rewrite = 91;});
 
 // moai function
-(function()
+function rewrite_item()
 {
 	var $ = jQuery;
 	var block_user = $('a');
 	block_user.each(function(i, item)
 	{
-		if ($(item).text() != '喜欢' && $(item).text() != '转发') return;
+		if ($(item).text() != '分享') return;
+		if ($(block_user[i + 1]).text() == '膜拜') return;
 		if ($(this).parent().get(0).tagName == 'LI') return; // the button here is somewhat different and cannot be triggered 
 		var seperator = $('<span class="seperator">| </span>');
 		var mobai_button = $('<a href="javascript:;">膜拜</a>');
-		var mb_builder = '膜拜！';
+		var mb_builder = '';
 		var insert_target = $(this);
 		mobai_button.click(function(e)
 		{
-			if ($(item).text() == '转发')
-			{
-				var total = Math.floor(Math.random() * 11 + 1);
-				mb_builder = '';
-				for (var i = 0; i < total; i++) mb_builder += '(mb)';
-			}
+			
+			var total = Math.floor(Math.random() * 11 + 1);
+			for (var i = 0; i < total; i++) mb_builder += '(mb)';
 			if (debug_mobai) console.log($(this).parents().eq(5).prev().val(mb_builder), 'clicked');
 			$(this).parent().next().find('textarea').val(mb_builder);
 			$(this).parent().next().find('.input-button').trigger('click');
@@ -68,7 +66,10 @@ $(document).ready(function() {rewrite = 91;});
 		mobai_button.insertAfter(insert_target);
 		seperator.insertAfter(insert_target);
 	});
-})();
+	window.setTimeout(function() {rewrite_item();}, 1000);
+}
+
+rewrite_item();
 
 
 
